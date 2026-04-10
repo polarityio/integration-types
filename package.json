@@ -1,0 +1,33 @@
+{
+  "name": "@polarityio/integration-types",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for Polarity Integrations",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polarityio/integration-types"
+  },
+  "author": "Polarity IO <support@polarity.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/polarityio/integration-types/issues"
+  },
+  "homepage": "https://github.com/polarityio/integration-types#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
