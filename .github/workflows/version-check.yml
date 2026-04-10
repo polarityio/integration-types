@@ -1,0 +1,46 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-version-bump:
+    name: Require Version Bump
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Check version has been incremented
+        run: |
+          npm install --no-save semver
+
+          PR_VERSION=$(node -p "require('./package.json').version")
+          MAIN_VERSION=$(git show origin/main:package.json 2>/dev/null \
+            | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).version" \
+            2>/dev/null || echo "0.0.0")
+
+          echo "main version:  $MAIN_VERSION"
+          echo "PR version:    $PR_VERSION"
+
+          IS_GREATER=$(node -e "
+            const semver = require('semver');
+            const result = semver.gt('$PR_VERSION', '$MAIN_VERSION');
+            console.log(result ? 'true' : 'false');
+          ")
+
+          if [ "$IS_GREATER" = "true" ]; then
+            echo ""
+            echo "✅ Version bumped: $MAIN_VERSION → $PR_VERSION"
+          else
+            echo ""
+            echo "❌ package.json version ($PR_VERSION) must be greater than main ($MAIN_VERSION)."
+            echo "   Bump the version using: npm version patch|minor|major"
+            exit 1
+          fi

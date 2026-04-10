@@ -6,10 +6,7 @@ import type { IntegrationContext } from './context';
  *
  * Receives admin-only (global) user options and the integration context.
  */
-export type PollFunction = (
-  options: DoLookupUserOptions,
-  context: IntegrationContext
-) => Promise<void>;
+export type PollFunction = (options: DoLookupUserOptions, context: IntegrationContext) => Promise<void>;
 
 interface BasePollSpec {
   /** The function to call on each poll cycle. */

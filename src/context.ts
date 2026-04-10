@@ -57,7 +57,7 @@ export interface PolarityCache {
  */
 export interface IntegrationContext {
   cache: PolarityCache;
-  integrationId: string;  
+  integrationId: string;
   userId: number;
   logger: Logger;
   startPolling: (pollName: string) => void;

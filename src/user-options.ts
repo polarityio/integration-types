@@ -9,12 +9,7 @@ export interface SelectTypeOptionValue {
 /**
  * Possible values for a user option.
  */
-export type PossibleUserOptionValue =
-  | string
-  | number
-  | boolean
-  | SelectTypeOptionValue
-  | SelectTypeOptionValue[];
+export type PossibleUserOptionValue = string | number | boolean | SelectTypeOptionValue | SelectTypeOptionValue[];
 
 /**
  * User options object passed into the integration's `doLookup` method.
