@@ -1,6 +1,6 @@
 {
   "name": "@polarityio/integration-types",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "TypeScript type definitions for Polarity Integrations",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/polarityio/integration-types"
+    "url": "git+https://github.com/polarityio/integration-types.git"
   },
   "author": "Polarity IO <support@polarity.io>",
   "license": "MIT",
