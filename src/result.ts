@@ -8,10 +8,15 @@ import type { Entity } from './entity';
 export interface Result<TDetails = unknown> {
   entity: Entity;
   displayValue?: string;
+  /**
+   * If set to `true`, this result will not be cached in the Integration cache.
+   * Defaults to `false`.
+   */
+  isVolatile?: boolean;
   data: {
     summary: string[];
     details: TDetails;
-  };
+  } | null;
 }
 
 /**
