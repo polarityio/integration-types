@@ -23,6 +23,9 @@
   },
   "author": "Polarity IO <support@polarity.io>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/polarityio/integration-types/issues"
   },
