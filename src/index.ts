@@ -41,10 +41,4 @@ export type { Logger } from './logger';
 export type { Integration } from './integration';
 
 // Polling types
-export type {
-  PollFunction,
-  IntervalPollSpec,
-  CronPollSpec,
-  PollSpec,
-  Poll
-} from './polling';
+export type { PollFunction, IntervalPollSpec, CronPollSpec, PollSpec, Poll } from './polling';

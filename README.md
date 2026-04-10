@@ -26,18 +26,18 @@ import type {
 
 | Module | Types |
 |--------|-------|
-| **Entity** | `Entity`, `EntityType`, `StandardEntityType`, `Channel` |
-| **Results** | `Result<TDetails>`, `DoLookupResult<TDetails>` |
-| **User Options** | `DoLookupUserOptions`, `ValidateOptionsUserOption`, `ValidateOptionsUserOptions`, `DropdownUserOptionValue`, `PossibleUserOptionValue`, `ValidationError` |
+| **Entity** | `Entity`, `EntityType`, `EntityTypeIdentifier`, `StandardEntityType`, `Channel`, `EntityPosition`, `RequestContext`, `OnDemandRequestContext`, `ScreenChangeRequestContext` |
+| **Results** | `LookupResult<TDetails>`, `DoLookupResult<TDetails>` |
+| **User Options** | `DoLookupUserOptions`, `ValidateOptionsUserOption`, `ValidateOptionsUserOptions`, `SelectTypeOptionValue`, `PossibleUserOptionValue`, `ValidationError` |
 | **Context** | `IntegrationContext`, `PolarityCache`, `GlobalCache`, `IntegrationCache`, `UserCache`, `CacheOptions` |
 | **Logging** | `Logger` |
-| **Config** | `IntegrationConfig` |
-| **Contract** | `Integration<TStartupResult, TDetails>`, `IntegrationError` (interface only) |
+| **Contract** | `Integration` |
+| **Polling** | `Poll`, `PollSpec`, `IntervalPollSpec`, `CronPollSpec`, `PollFunction` |
 
 ## Notes
 
 - This package exports **type definitions only** — no JavaScript is emitted.
-- The `IntegrationError` export is a TypeScript interface describing the error shape. To *create* errors at runtime, use `polarity-integration-utils`.
+- To create `IntegrationError` instances at runtime, use `polarity-integration-utils`.
 - Types are kept in sync with the canonical definitions in `polarity-integration-utils`.
 
 ## License

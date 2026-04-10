@@ -32,11 +32,7 @@ export interface Integration {
    *
    * @throws IntegrationError (from `polarity-integration-utils`) on failure.
    */
-  onMessage?: (
-    payload: unknown,
-    options: DoLookupUserOptions,
-    context: IntegrationContext
-  ) => Promise<unknown>;
+  onMessage?: (payload: unknown, options: DoLookupUserOptions, context: IntegrationContext) => Promise<unknown>;
 
   /**
    * Optional handler called when a user expands the details block for a result.
@@ -53,10 +49,7 @@ export interface Integration {
    * Called to validate the user's option configuration. Return an array of
    * validation errors, or an empty array if options are valid.
    */
-  validateOptions: (
-    options: ValidateOptionsUserOptions,
-    context: IntegrationContext
-  ) => ValidationError[];
+  validateOptions: (options: ValidateOptionsUserOptions, context: IntegrationContext) => ValidationError[];
 
   /**
    * Optional record of named poll specifications. Each key is the poll name
