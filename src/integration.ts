@@ -1,6 +1,6 @@
 import type { Entity } from './entity';
 import type { DoLookupUserOptions, ValidateOptionsUserOptions, ValidationError } from './user-options';
-import type { DoLookupResult, Result } from './result';
+import type { DoLookupResult, LookupResult } from './result';
 import type { IntegrationContext } from './context';
 import type { Logger } from './logger';
 import type { Poll } from './polling';
@@ -44,7 +44,7 @@ export interface Integration {
    * @throws IntegrationError (from `polarity-integration-utils`) on failure.
    */
   onDetails?: (
-    lookupObject: Result,
+    lookupObject: LookupResult,
     options: DoLookupUserOptions,
     context: IntegrationContext
   ) => Promise<unknown>;

@@ -1,9 +1,19 @@
 // Entity types
-export type { Channel, StandardEntityType, EntityType, Entity } from './entity';
+export type {
+  Channel,
+  StandardEntityType,
+  EntityType,
+  EntityTypeIdentifier,
+  EntityPosition,
+  OnDemandRequestContext,
+  ScreenChangeRequestContext,
+  RequestContext,
+  Entity
+} from './entity';
 
 // User option types
 export type {
-  SelectUserOptionValue,
+  SelectTypeOptionValue,
   PossibleUserOptionValue,
   DoLookupUserOptions,
   ValidateOptionsUserOption,
@@ -12,7 +22,7 @@ export type {
 } from './user-options';
 
 // Result types
-export type { Result, DoLookupResult } from './result';
+export type { LookupResult, DoLookupResult } from './result';
 
 // Context and cache types
 export type {
@@ -26,20 +36,6 @@ export type {
 
 // Logger types
 export type { Logger } from './logger';
-
-// Integration config types
-export type {
-  SelectOptionItem,
-  TextOption,
-  BooleanOption,
-  NumberOption,
-  SelectOption,
-  OptionDefinition,
-  CustomType,
-  ComponentPath,
-  ViewComponent,
-  IntegrationConfig
-} from './integration-config';
 
 // Integration contract types
 export type { Integration } from './integration';

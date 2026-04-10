@@ -1,7 +1,7 @@
 /**
  * Represents a dropdown option value used in user configuration.
  */
-export interface SelectUserOptionValue {
+export interface SelectTypeOptionValue {
   display: string;
   value: string;
 }
@@ -10,12 +10,11 @@ export interface SelectUserOptionValue {
  * Possible values for a user option.
  */
 export type PossibleUserOptionValue =
-  | undefined
   | string
   | number
   | boolean
-  | SelectUserOptionValue
-  | SelectUserOptionValue[];
+  | SelectTypeOptionValue
+  | SelectTypeOptionValue[];
 
 /**
  * User options object passed into the integration's `doLookup` method.
@@ -35,11 +34,11 @@ export type DoLookupUserOptions = Record<string, PossibleUserOptionValue>;
  * A single user option as passed to the `validateOptions` method.
  */
 export interface ValidateOptionsUserOption {
-  integration_id?: string;
   key: string;
   value: PossibleUserOptionValue;
-  user_can_edit?: boolean;
-  admin_only?: boolean;
+  integration_id: string;
+  user_can_edit: boolean;
+  admin_only: boolean;
 }
 
 /**

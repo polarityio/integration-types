@@ -5,7 +5,7 @@ import type { Entity } from './entity';
  *
  * @typeParam TDetails - The type of the `data.details` object. Defaults to `unknown`.
  */
-export interface Result<TDetails = unknown> {
+export interface LookupResult<TDetails = unknown> {
   entity: Entity;
   displayValue?: string;
   /**
@@ -24,4 +24,4 @@ export interface Result<TDetails = unknown> {
  *
  * @typeParam TDetails - The type of each result's `data.details` object.
  */
-export type DoLookupResult<TDetails = unknown> = Result<TDetails>[];
+export type DoLookupResult<TDetails = unknown> = LookupResult<TDetails>[];
