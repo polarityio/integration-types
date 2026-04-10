@@ -1,7 +1,7 @@
 /**
  * Represents a dropdown option value used in user configuration.
  */
-export interface DropdownUserOptionValue {
+export interface SelectUserOptionValue {
   display: string;
   value: string;
 }
@@ -14,8 +14,8 @@ export type PossibleUserOptionValue =
   | string
   | number
   | boolean
-  | DropdownUserOptionValue
-  | DropdownUserOptionValue[];
+  | SelectUserOptionValue
+  | SelectUserOptionValue[];
 
 /**
  * User options object passed into the integration's `doLookup` method.

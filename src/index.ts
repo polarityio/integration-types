@@ -3,7 +3,7 @@ export type { Channel, StandardEntityType, EntityType, Entity } from './entity';
 
 // User option types
 export type {
-  DropdownUserOptionValue,
+  SelectUserOptionValue,
   PossibleUserOptionValue,
   DoLookupUserOptions,
   ValidateOptionsUserOption,
