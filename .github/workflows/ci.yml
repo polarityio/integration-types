@@ -34,3 +34,26 @@ jobs:
       - run: npm ci
 
       - run: npm run format:check
+
+  version-sync:
+    name: Version Sync Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check package.json and package-lock.json versions match
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          LOCK_VERSION=$(node -p "require('./package-lock.json').version")
+
+          echo "package.json version:      $PKG_VERSION"
+          echo "package-lock.json version: $LOCK_VERSION"
+
+          if [ "$PKG_VERSION" != "$LOCK_VERSION" ]; then
+            echo ""
+            echo "❌ Version mismatch! Run 'npm install' to sync package-lock.json."
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ Versions match."
