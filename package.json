@@ -1,6 +1,6 @@
 {
   "name": "@polarityio/integration-types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "TypeScript type definitions for Polarity Integrations",
   "types": "./dist/index.d.ts",
   "exports": {
