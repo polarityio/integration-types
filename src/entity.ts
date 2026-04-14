@@ -33,10 +33,12 @@ export type EntityType = StandardEntityType | 'IP' | 'hash' | `custom.${string}`
 /**
  * The value used in the `type` property of an Entity.
  *
- * For IPv4/IPv6 entities this is `'IPv4'` or `'IPv6'`. For any hash type this
- * is `'hash'`. For custom types this is `'custom'`.
+ * This includes every {@link StandardEntityType} value (`'IPv4'`, `'IPv4CIDR'`,
+ * `'IPv6'`, `'MAC'`, `'MD5'`, `'SHA1'`, `'SHA256'`, `'cve'`, `'domain'`,
+ * `'email'`, `'string'`, `'url'`), plus `'hash'` for any hash type and
+ * `'custom'` for custom entity types.
  */
-export type EntityTypeIdentifier = StandardEntityType | 'custom';
+export type EntityTypeIdentifier = StandardEntityType | 'hash' | 'custom';
 
 /**
  * Screen position of an entity detected in Stream or Highlight mode.
