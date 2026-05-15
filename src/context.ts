@@ -13,7 +13,24 @@ export interface CacheOptions {
  * Use for system-wide statistics, feature flags, or shared configuration.
  */
 export interface GlobalCache {
+  /**
+   * Retrieves a value from the global cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @returns The cached value, or `undefined` if the key does not exist or has expired.
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   get(key: string): Promise<unknown>;
+  /**
+   * Stores a value in the global cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @param value - Value to cache.
+   * @param options - Optional cache settings (e.g. TTL).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
   delete(key: string): Promise<void>;
 }
@@ -23,7 +40,24 @@ export interface GlobalCache {
  * Use for API responses, configuration, or data that's the same for all users.
  */
 export interface IntegrationCache {
+  /**
+   * Retrieves a value from the integration-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @returns The cached value, or `undefined` if the key does not exist or has expired.
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   get(key: string): Promise<unknown>;
+  /**
+   * Stores a value in the integration-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @param value - Value to cache.
+   * @param options - Optional cache settings (e.g. TTL).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
   delete(key: string): Promise<void>;
 }
@@ -33,7 +67,24 @@ export interface IntegrationCache {
  * Use for user preferences, recent activity, or personalized data.
  */
 export interface UserCache {
+  /**
+   * Retrieves a value from the user-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @returns The cached value, or `undefined` if the key does not exist or has expired.
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   get(key: string): Promise<unknown>;
+  /**
+   * Stores a value in the user-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @param value - Value to cache.
+   * @param options - Optional cache settings (e.g. TTL).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
   delete(key: string): Promise<void>;
 }
