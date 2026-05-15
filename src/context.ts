@@ -32,6 +32,13 @@ export interface GlobalCache {
    * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
    */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
+  /**
+   * Deletes a value from the global cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   delete(key: string): Promise<void>;
 }
 
@@ -59,6 +66,13 @@ export interface IntegrationCache {
    * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
    */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
+  /**
+   * Deletes a value from the integration-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   delete(key: string): Promise<void>;
 }
 
@@ -86,6 +100,13 @@ export interface UserCache {
    * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
    */
   set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
+  /**
+   * Deletes a value from the user-scoped cache.
+   *
+   * @param key - Cache key. Must be 1–250 characters and match `/^[a-zA-Z0-9._-]+$/`
+   *   (alphanumeric characters, dots, underscores, and hyphens only).
+   * @throws {Error} If `key` is empty, exceeds 250 characters, or contains invalid characters.
+   */
   delete(key: string): Promise<void>;
 }
 
