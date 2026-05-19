@@ -34,6 +34,16 @@ export type {
   IntegrationContext
 } from './context';
 
+// Limiter types
+export type {
+  ThrottleStrategy,
+  ScheduleOptions,
+  LimiterCounts,
+  ThrottleSettings,
+  ScopedLimiter,
+  Limiter
+} from './limiter';
+
 // Logger types
 export type { Logger } from './logger';
 
@@ -42,3 +52,15 @@ export type { Integration } from './integration';
 
 // Polling types
 export type { PollFunction, IntervalPollSpec, CronPollSpec, PollSpec, Poll } from './polling';
+
+// Config types
+export type {
+  TextOption,
+  BooleanOption,
+  NumberOption,
+  SelectOption,
+  IntegrationOption,
+  LogLevel,
+  RequestConfig,
+  IntegrationConfig
+} from './config';
