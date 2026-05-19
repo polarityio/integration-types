@@ -35,7 +35,14 @@ export type {
 } from './context';
 
 // Limiter types
-export type { ScheduleOptions, LimiterCounts, ThrottleSettings, ScopedLimiter, Limiter } from './limiter';
+export type {
+  ThrottleStrategy,
+  ScheduleOptions,
+  LimiterCounts,
+  ThrottleSettings,
+  ScopedLimiter,
+  Limiter
+} from './limiter';
 
 // Logger types
 export type { Logger } from './logger';

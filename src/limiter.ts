@@ -1,4 +1,13 @@
 /**
+ * Strategy for handling jobs when `highWater` is reached.
+ * - `1` (LEAK) — Drop the oldest job in the queue.
+ * - `2` (OVERFLOW_PRIORITY) — Drop the lowest-priority job.
+ * - `3` (OVERFLOW) — Drop the incoming job (reject it immediately).
+ * - `4` (BLOCK) — Block until a slot opens.
+ */
+export type ThrottleStrategy = 1 | 2 | 3 | 4;
+
+/**
  * Options that can be passed to {@link Limiter.schedule} to control
  * job priority and identification within the throttle queue.
  */
@@ -58,7 +67,7 @@ export interface ThrottleSettings {
    * - `4` (BLOCK): Block until a slot opens.
    * @default 3 (OVERFLOW)
    */
-  strategy?: number;
+  strategy?: ThrottleStrategy;
   /**
    * Reservoir — the total number of jobs the limiter will execute before
    * stopping. Useful for API rate limits (e.g., 100 requests per minute).
