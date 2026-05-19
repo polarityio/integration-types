@@ -1,4 +1,4 @@
-import type { Limiter, ThrottleSettings } from './limiter';
+import type { Limiter } from './limiter';
 import type { Logger } from './logger';
 
 /**
