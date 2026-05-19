@@ -1,3 +1,4 @@
+import type { Limiter, ThrottleSettings } from './limiter';
 import type { Logger } from './logger';
 
 /**
@@ -132,6 +133,7 @@ export interface IntegrationContext {
   integrationId: string;
   userId: number;
   logger: Logger;
+  limiter: Limiter;
   startPolling: (pollName: string) => void;
   stopPolling: (pollName: string) => void;
 }
