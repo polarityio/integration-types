@@ -107,26 +107,67 @@ export interface ScopedLimiter {
    * Schedule an async job within this scope's rate limit.
    *
    * @param fn - The async function to execute when a slot is available.
+   *   Any additional arguments after `fn` are passed through as arguments to `fn`.
+   * @param args - Optional arguments forwarded to `fn` when it is invoked.
    * @returns A promise that resolves with the return value of `fn`.
    *
-   * @example
+   * @example Closure style — capture variables from surrounding scope
    * ```ts
    * const scoped = context.limiter.scope(userId);
    * const result = await scoped.schedule(async () => {
    *   return await fetchUserData(userId);
    * });
    * ```
+   *
+   * @example Function reference style — pass arguments through to fn
+   * ```ts
+   * async function fetchUserPage(id: string, page: number) {
+   *   return await apiClient.get(`/users/${id}/page/${page}`);
+   * }
+   *
+   * const scoped = context.limiter.scope(userId);
+   * const result = await scoped.schedule(fetchUserPage, userId, 1);
+   * ```
    */
-  schedule<T>(fn: () => Promise<T>): Promise<T>;
+  schedule<T, A extends unknown[]>(fn: (...args: A) => PromiseLike<T>, ...args: A): Promise<T>;
 
   /**
    * Schedule an async job with explicit scheduling options.
    *
    * @param options - Priority, id, weight, and expiration settings.
    * @param fn - The async function to execute when a slot is available.
+   *   Any additional arguments after `fn` are passed through as arguments to `fn`.
+   * @param args - Optional arguments forwarded to `fn` when it is invoked.
    * @returns A promise that resolves with the return value of `fn`.
+   *
+   * @example Closure style — capture variables from surrounding scope
+   * ```ts
+   * const scoped = context.limiter.scope(userId);
+   * const result = await scoped.schedule(
+   *   { priority: 1 },
+   *   async () => await fetchPriorityData(userId)
+   * );
+   * ```
+   *
+   * @example Function reference style — pass arguments through to fn
+   * ```ts
+   * async function fetchPriorityData(id: string) {
+   *   return await apiClient.get(`/users/${id}/priority`);
+   * }
+   *
+   * const scoped = context.limiter.scope(userId);
+   * const result = await scoped.schedule(
+   *   { priority: 1 },
+   *   fetchPriorityData,
+   *   userId
+   * );
+   * ```
    */
-  schedule<T>(options: ScheduleOptions, fn: () => Promise<T>): Promise<T>;
+  schedule<T, A extends unknown[]>(
+    options: ScheduleOptions,
+    fn: (...args: A) => PromiseLike<T>,
+    ...args: A
+  ): Promise<T>;
 }
 
 /**
@@ -159,33 +200,67 @@ export interface Limiter {
    * minimum time between jobs has elapsed.
    *
    * @param fn - The async function to execute when a slot is available.
+   *   Any additional arguments after `fn` are passed through as arguments to `fn`.
+   * @param args - Optional arguments forwarded to `fn` when it is invoked.
    * @returns A promise that resolves with the return value of `fn`.
    *
-   * @example
+   * @example Closure style — capture variables from surrounding scope
    * ```ts
    * const data = await context.limiter.schedule(async () => {
    *   return await fetch('https://api.example.com/data');
    * });
    * ```
+   *
+   * @example Function reference style — pass arguments through to fn
+   * ```ts
+   * async function fetchData(url: string, headers: Record<string, string>) {
+   *   return await fetch(url, { headers });
+   * }
+   *
+   * const data = await context.limiter.schedule(
+   *   fetchData,
+   *   'https://api.example.com/data',
+   *   { Authorization: 'Bearer token' }
+   * );
+   * ```
    */
-  schedule<T>(fn: () => Promise<T>): Promise<T>;
+  schedule<T, A extends unknown[]>(fn: (...args: A) => PromiseLike<T>, ...args: A): Promise<T>;
 
   /**
    * Schedule an async job with explicit scheduling options (priority, id, etc.).
    *
    * @param options - Options controlling priority, weight, and expiration.
    * @param fn - The async function to execute when a slot is available.
+   *   Any additional arguments after `fn` are passed through as arguments to `fn`.
+   * @param args - Optional arguments forwarded to `fn` when it is invoked.
    * @returns A promise that resolves with the return value of `fn`.
    *
-   * @example
+   * @example Closure style — capture variables from surrounding scope
    * ```ts
    * const result = await context.limiter.schedule(
    *   { priority: 1, id: 'critical-job' },
    *   async () => await criticalApiCall()
    * );
    * ```
+   *
+   * @example Function reference style — pass arguments through to fn
+   * ```ts
+   * async function fetchEndpoint(endpoint: string) {
+   *   return await apiClient.get(endpoint);
+   * }
+   *
+   * const result = await context.limiter.schedule(
+   *   { priority: 1, id: 'critical-job' },
+   *   fetchEndpoint,
+   *   '/critical-resource'
+   * );
+   * ```
    */
-  schedule<T>(options: ScheduleOptions, fn: () => Promise<T>): Promise<T>;
+  schedule<T, A extends unknown[]>(
+    options: ScheduleOptions,
+    fn: (...args: A) => PromiseLike<T>,
+    ...args: A
+  ): Promise<T>;
 
   /**
    * Dynamically update the limiter's throttle settings at runtime.
