@@ -31,6 +31,8 @@ export type {
   IntegrationCache,
   UserCache,
   PolarityCache,
+  NetworkProxy,
+  NetworkContext,
   IntegrationContext
 } from './context';
 
