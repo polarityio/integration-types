@@ -166,7 +166,7 @@ export interface NetworkProxy {
    *
    * Supports patterns: exact host, `.suffix` domain matching, and `*` wildcard.
    *
-   * @example "localhost,.internal,10.0.0.0/8"
+   * @example "localhost,.internal,*.corp"
    */
   noProxy?: string | null;
 }
@@ -228,7 +228,7 @@ export interface NetworkProxy {
  *     config.proxy = {
  *       protocol: u.protocol.replace(':', ''),
  *       host: u.hostname,
- *       port: Number(u.port),
+ *       port: Number(u.port) || (u.protocol === 'https:' ? 443 : 80),
  *       ...(u.username && { auth: { username: u.username, password: u.password } }),
  *     };
  *   }
