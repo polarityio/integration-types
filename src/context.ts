@@ -272,6 +272,42 @@ export interface IntegrationContext {
   limiter: Limiter;
   /** Per-integration network (TLS/proxy) configuration provided by the runtime on every dispatch. */
   network: NetworkContext;
-  startPolling: (pollName: string) => void;
+  /**
+   * Starts a named poller that was defined in the integration's `poll` export.
+   *
+   * If the poller is already running, this call is a no-op.
+   *
+   * @param pollName - The key from the integration's `poll` record identifying
+   *   which poller to start.
+   * @param runImmediately - When `true` (default), the poll function fires once
+   *   immediately before the first scheduled interval or cron tick. When `false`,
+   *   the first execution waits for the next scheduled tick.
+   *
+   * @example Start a poller and fire immediately
+   * ```typescript
+   * context.startPolling('refreshTokens');
+   * ```
+   *
+   * @example Start a poller but wait for the first scheduled tick
+   * ```typescript
+   * context.startPolling('weeklyReport', false);
+   * ```
+   */
+  startPolling: (pollName: string, runImmediately?: boolean) => void;
+
+  /**
+   * Stops a named poller that is currently running.
+   *
+   * If the poller is not running, this call is a no-op. A stopped poller can be
+   * restarted later via `startPolling()`.
+   *
+   * @param pollName - The key from the integration's `poll` record identifying
+   *   which poller to stop.
+   *
+   * @example
+   * ```typescript
+   * context.stopPolling('refreshTokens');
+   * ```
+   */
   stopPolling: (pollName: string) => void;
 }
