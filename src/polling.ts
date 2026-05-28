@@ -69,8 +69,9 @@ interface BasePollSpec {
    * - `false` (default) — The first execution occurs after the first
    *   interval/cron tick.
    *
-   * This applies both to automatic start (when `autostart` is `true`) and
-   * manual start via `context.startPolling()`.
+   * This applies to automatic start (when `autostart` is `true`). When a poller
+   * is started manually via `context.startPolling()`, the method's own
+   * `runImmediately` parameter takes precedence over this spec-level value.
    *
    * @default false
    */
