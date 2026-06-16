@@ -33,8 +33,9 @@ export type PollFunction = (options: DoLookupUserOptions, context: IntegrationCo
  * - `'shutdown'` — The runtime stops the integration entirely and surfaces the
  *   error to the Polarity frontend. Use for unrecoverable failures where continued
  *   polling would be harmful.
+ * - `'skip'` — The runtime logs the error and continues polling on its normal schedule (no retry is performed for the failed run). Use when individual poll failures are acceptable and polling should continue uninterrupted.
  */
-export type PollFailureStrategy = 'retry' | 'shutdown';
+export type PollFailureStrategy = 'retry' | 'shutdown' | 'skip';
 
 /**
  * Shared configuration for all poll specifications.
