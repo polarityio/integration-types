@@ -21,6 +21,7 @@ export type StandardEntityType =
   | 'domain'
   | 'email'
   | 'string'
+  | 'threat_actor'
   | 'url';
 
 /**
@@ -35,8 +36,8 @@ export type EntityType = StandardEntityType | 'IP' | 'hash' | `custom.${string}`
  *
  * This includes every {@link StandardEntityType} value (`'IPv4'`, `'IPv4CIDR'`,
  * `'IPv6'`, `'MAC'`, `'MD5'`, `'SHA1'`, `'SHA256'`, `'cve'`, `'domain'`,
- * `'email'`, `'string'`, `'url'`), plus `'hash'` for any hash type and
- * `'custom'` for custom entity types.
+ * `'email'`, `'string'`, `'threat_actor'`, `'url'`), plus `'hash'` for any hash
+ * type and `'custom'` for custom entity types.
  */
 export type EntityTypeIdentifier = StandardEntityType | 'hash' | 'custom';
 
